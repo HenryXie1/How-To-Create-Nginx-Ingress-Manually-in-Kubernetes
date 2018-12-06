@@ -32,6 +32,7 @@ NAME                                     TYPE        CLUSTER-IP       EXTERNAL-I
 my-nginx-nginx-ingress-controller        NodePort    10.105.94.233    <none>        80:32155/TCP,443:32325/TCP   7m
 my-nginx-nginx-ingress-default-backend   ClusterIP   10.96.219.102    <none>        80/TCP                       28m
 ```
+###  Start to create rules to meet rewrite requirements
 * Create rule for mutiple virtual hosts. ie apexsb-lb.oraclecorp.com livesqlsb-lb.oraclecorp.com, yaml is like
 ```
 apiVersion: extensions/v1beta1
