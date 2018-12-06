@@ -1,6 +1,6 @@
 # How-To-Use-Nginx-Ingress-As-Loadbalancer-in-Kubernetes
 ###  Requirement:
-We need to put some rewrite or rediect rules of our services. Before we use apache or bigip to to do it .Now in K8S, we plan to mannually install Nginx Ingress to meet the requirement
+We need to put some rewrite  rules for url of our services. Before we use apache or bigip to to do it .Now in K8S, we plan to mannually install Nginx Ingress to meet the requirement
 
 ###  Preparation
 
