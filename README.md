@@ -1,0 +1,1 @@
+# How-To-Create-Nginx-Ingress-Manually-in-Kuberntes
