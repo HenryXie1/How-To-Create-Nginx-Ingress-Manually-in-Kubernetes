@@ -38,6 +38,23 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /ords
+  name: rewrite-apexroot
+  namespace: default
+spec:
+  rules:
+  - host: apexsb-lb.oraclecorp.com
+    http:
+      paths:
+      - backend:
+          serviceName: apexords-service
+          servicePort: 8888
+        path: /test
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
     nginx.ingress.kubernetes.io/app-root: /ords
   name: apexroot
   namespace: default
