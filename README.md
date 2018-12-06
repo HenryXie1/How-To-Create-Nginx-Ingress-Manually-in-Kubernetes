@@ -32,3 +32,33 @@ NAME                                     TYPE        CLUSTER-IP       EXTERNAL-I
 my-nginx-nginx-ingress-controller        NodePort    10.105.94.233    <none>        80:32155/TCP,443:32325/TCP   7m
 my-nginx-nginx-ingress-default-backend   ClusterIP   10.96.219.102    <none>        80/TCP                       28m
 ```
+* Create rule for Oracle Apex appsroot. virutal host is apexsb-lb.oraclecorp.com, yaml is like
+```
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/app-root: /ords
+  name: apexroot
+  namespace: default
+spec:
+  rules:
+  - host: apexsb-lb.oraclecorp.com
+    http:
+      paths:
+      - backend:
+          serviceName: apexords-service
+          servicePort: 8888
+        path: /
+```
+* Create or Modify OCI load balancer to add backend node pool with  http port 32155  https port 32325
+* Use curl to verify the rewrite is working
+```
+$ curl -I -k http://apexsb-lb.oraclecorp.com/
+HTTP/1.1 302 Moved Temporarily
+Date: Thu, 06 Dec 2018 06:10:21 GMT
+Content-Type: text/html
+Content-Length: 145
+Connection: keep-alive
+Location: http://apexsb-lb.oraclecorp.com/ords
+```
