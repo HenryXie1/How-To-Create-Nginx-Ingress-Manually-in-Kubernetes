@@ -32,7 +32,7 @@ NAME                                     TYPE        CLUSTER-IP       EXTERNAL-I
 my-nginx-nginx-ingress-controller        NodePort    10.105.94.233    <none>        80:32155/TCP,443:32325/TCP   7m
 my-nginx-nginx-ingress-default-backend   ClusterIP   10.96.219.102    <none>        80/TCP                       28m
 ```
-* Create rule for Oracle Apex appsroot. virutal host is apexsb-lb.oraclecorp.com, yaml is like
+* Create rule for mutiple virtual hosts. ie apexsb-lb.oraclecorp.com livesqlsb-lb.oraclecorp.com, yaml is like
 ```
 apiVersion: extensions/v1beta1
 kind: Ingress
@@ -48,6 +48,23 @@ spec:
       paths:
       - backend:
           serviceName: apexords-service
+          servicePort: 8888
+        path: /
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/app-root: /ords/f?p=590:1000
+  name: livesqlsbroot
+  namespace: default
+spec:
+  rules:
+  - host: livesqlsb-lb.oraclecorp.com
+    http:
+      paths:
+      - backend:
+          serviceName: livesqlsb-service
           servicePort: 8888
         path: /
 ```
