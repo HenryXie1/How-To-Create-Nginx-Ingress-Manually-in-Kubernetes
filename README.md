@@ -41,7 +41,7 @@ kind: Ingress
 metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /ords
-  name: rewrite-apexroot
+  name: rewrite-test
   namespace: default
 spec:
   rules:
