@@ -90,6 +90,19 @@ spec:
 * Create or Modify OCI load balancer to add backend node pool with  http port 32155  https port 32325
 * Use curl to verify the rewrite is working
 ```
+$ curl -I -k http://apexsb-lb.oraclecorp.com/test
+HTTP/1.1 302 Found
+Date: Fri, 07 Dec 2018 00:35:35 GMT
+Content-Type: text/html;charset=utf-8
+Connection: keep-alive
+X-Content-Type-Options: nosniff
+X-Xss-Protection: 1; mode=block
+Cache-Control: no-store
+Pragma: no-cache
+Expires: Sun, 27 Jul 1997 13:00:00 GMT
+Set-Cookie: ORA_WWV_USER_230138572008313=ORA_WWV-P233NLbDmLfEN3vyFlL50kKh; path=/ords; HttpOnly
+Location: http://apexsb-lb.oraclecorp.com/ords/f?p=4550:1:597976824567:::::
+
 $ curl -I -k http://apexsb-lb.oraclecorp.com/
 HTTP/1.1 302 Moved Temporarily
 Date: Thu, 06 Dec 2018 06:10:21 GMT
