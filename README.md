@@ -5,6 +5,7 @@ Please refer more details in official [github doc of nginx ingress controller](h
 
 ###  Preparation
 
+* Install helm. Please refer official [github tutorial](https://github.com/oracle/mysql-operator/blob/master/docs/tutorial.md)
 * Install nginx ingress via helm
 ```
 helm install stable/nginx-ingress --name my-nginx --set rbac.create=true
